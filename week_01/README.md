@@ -1,8 +1,8 @@
-# PSET 01
+# Problem set 01
 
 ## Problem 1
 
-<font color="lightgrey">_10.0 points_</font>
+_10.0 points_
 
 Assume `s` is a string of lower case characters.
 
@@ -14,7 +14,7 @@ Number of vowels: 5
 
 ## Problem 2
 
-<font color="lightgrey">_10.0 points_</font>
+_10.0 points_
 
 Assume `s` is a string of lower case characters.
 
@@ -26,7 +26,7 @@ Number of times bob occurs is: 2
 
 ## Problem 3
 
-<font color="lightgrey">_15.0 points_</font>
+_15.0 points_
 
 Assume `s` is a string of lower case characters.
 
