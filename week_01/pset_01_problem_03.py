@@ -1,68 +1,39 @@
 """ Problem set 01 - Problem 3
-
 Assume "s" is a string of lower case characters.
-
 Write a program that prints the longest substring of "s" in which the letters occur in alphabetical order. For example, if s = 'azcbobobegghakl', then your program should print
-
 Longest substring in alphabetical order is: beggh
-
 In the case of ties, print the first substring. For example, if s = 'abcbcd', then your program should print
-
 Longest substring in alphabetical order is: abc
-
 Note: This problem may be challenging. We encourage you to work smart. If you've spent more than a few hours on this problem, we suggest that you move on to a different part of the course. If you have time, come back to this problem after you've had a break and cleared your head. """
 
-s = 'azcbobobegghakl'  # Longest substring in alphabetical order is: beggh
-s = 'abcbcd'  # Longest substring in alphabetical order is: abc
-# s = 'zzcaisxes'  # Longest substring in alphabetical order is: aisx
-# s = 'jwnkynbeqnevcsbhwbdi'  # Longest substring in alphabetical order is: beq
-# s = 'yijduigpkuccmbnlnnsz'  # Longest substring in alphabetical order is: lnnsz
-# s = 'xnwkjtqoxqmorzk'  # Longest substring in alphabetical order is: morz
-
-
 abc = "abcdefghijklmnopqrstuvwxyz"
-temporary_string = ""
-stored_string = ""
-abc_index = 0
+final_str = ""
+current_str = ""
+current_ind = 0
 
 for char in s:
-    if len(temporary_string) != 0:
-        if char < abc[abc_index]:
-            #  Check the strings lengths
-            if len(stored_string) < len(temporary_string):
-                stored_string = temporary_string
-            # Reset everything
-            temporary_string = ""
-            abc_index = 0
-        else:
-            for i in range(abc_index, len(abc)):
-                if char == abc[i]:
-                    temporary_string += char
-                    abc_index = i
-                    break
+    # If the current letter breaks the alphabetical order, reset the counters
+    if char < abc[current_ind]:
+        current_str = ""
+        current_ind = 0
 
-    if len(temporary_string) == 0:
-        # Loop through ABC to find a match
+    # When a the current_str contains letters add one more if in alphabetical order
+    if len(current_str) != 0:
+        for i in range(current_ind, len(abc)):
+            if char == abc[i]:
+                current_str += char
+                current_ind = i
+                break
+    # A new current_str check, loop the ABC to find the first match character.
+    else:
         for i in range(len(abc)):
             if char == abc[i]:
-                abc_index = i
-                temporary_string += char
+                current_ind = i
+                current_str += char
                 break
 
-        # if abc_index == len(abc)-1:
-        #     # Check the strings lengths
-        #     if len(stored_string) < len(temporary_string):
-        #         stored_string = temporary_string
-        #     # Reset everything
-        #     temporary_string = ""
-        #     abc_index = 0
-        #     break
+    # Save the final_str if needed
+    if len(final_str) < len(current_str):
+        final_str = current_str
 
-if len(stored_string) < len(temporary_string):
-    stored_string = temporary_string
-
-
-print("Longest substring in alphabetical order is:", stored_string)
-
-
-# check if code is not generate errors related to "len(abc))".
+print("Longest substring in alphabetical order is:", final_str)
