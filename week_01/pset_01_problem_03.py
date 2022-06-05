@@ -27,20 +27,12 @@ for char in s:
         current_str = ""
         current_ind = 0
 
-    # If current_str contains letters add one more if in alphabetical order.
-    if len(current_str) != 0:
-        for i in range(current_ind, len(abc)):
-            if char == abc[i]:
-                current_str += char
-                current_ind = i
-                break
-    # A new current_str check, loop the ABC to find the first match character.
-    else:
-        for i in range(len(abc)):
-            if char == abc[i]:
-                current_ind = i
-                current_str += char
-                break
+    # Find a match and its properties,  add it to the temp string
+    for ind, letter in enumerate(abc):
+        if char == letter:
+            current_ind = ind
+            current_str += letter
+            break
 
     # Save the final_str if needed
     if len(final_str) < len(current_str):
