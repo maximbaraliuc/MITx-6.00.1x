@@ -32,8 +32,8 @@ def min_monthly_payment(balance: int, annual_interest_rate: float) -> str:
             monthly_pay_low = monthly_pay
 
     # For the grader(uses python 3.5) on edx use string concatenation
-    return "Lowest Payment: " + str(round(monthly_pay, 2))
-    # return f"Lowest Payment: {monthly_pay :.2f}"
+    # return "Lowest Payment: " + str(round(monthly_pay, 2))
+    return f"Lowest Payment: {monthly_pay :.2f}"
 
 
 # The line bellow is intended to be uncommented for the grader on edx.
