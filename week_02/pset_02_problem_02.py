@@ -16,7 +16,7 @@ def min_monthly_payment(balance: int, annual_interest_rate: float) -> str:
     original_balance = balance
 
     while balance > 0:
-
+        # Modify or reset the starting point variables
         balance = original_balance
         monthly_pay += 10
 
