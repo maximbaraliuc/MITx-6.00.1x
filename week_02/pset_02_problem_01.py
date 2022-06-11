@@ -20,8 +20,8 @@ def annual_remaining_balance(
         balance = unpaid_balance + monthly_interest_rate * unpaid_balance
 
     # For the grader(uses python 3.5) on edx use string concatenation
-    return "Remaining balance: " + str(round(balance, 2))
-    # return f"Remaining balance: {round(balance, 2)}"
+    # return "Remaining balance: " + str(round(balance, 2))
+    return f"Remaining balance: {balance :.2f}"
 
 
 # The line bellow is intended to be uncommented for the grader on edx.
