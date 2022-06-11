@@ -13,21 +13,21 @@ def min_monthly_payment(balance: int, annual_interest_rate: float) -> str:
 
     # Set a min for the constant of monthly pay
     monthly_pay = balance // 120 * 10
-    current_balance = balance
+    original_balance = balance
 
-    while current_balance > 0:
-        # Modify or reset the starting point variables
-        current_balance = balance
+    while balance > 0:
+
+        balance = original_balance
         monthly_pay += 10
 
         # Simulate one year of payments
         for _ in range(12):
-            unpaid_balance = current_balance - monthly_pay
-            current_balance = unpaid_balance + monthly_interest_rate * unpaid_balance
+            unpaid_balance = balance - monthly_pay
+            balance = unpaid_balance + monthly_interest_rate * unpaid_balance
 
     # For the grader(uses python 3.5) on edx use string concatenation
-    return "Lowest Payment: " + str(monthly_pay)
-    # return f"Lowest Payment: {monthly_pay}"
+    # return "Lowest Payment: " + str(monthly_pay)
+    return f"Lowest Payment: {monthly_pay}"
 
 
 # The line bellow is intended to be uncommented for the grader on edx.
