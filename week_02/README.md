@@ -1,5 +1,9 @@
 # Problem set 02
 
+- [**Problem 01**](#problem-1---paying-debt-off-in-a-year) | [Test Cases](#problem-1-test-cases)
+- [**Problem 02**](#problem-2---paying-debt-off-in-a-year) | [Test Cases](#problem-2-test-cases)
+- [**Problem 03**](#problem-3---using-bisection-search-to-make-the-program-faster) | [Test Cases](#problem-3-test-cases)
+
 ## Introduction
 
 Each month, a credit card statement will come with the option for you to pay a minimum amount of your charge, usually 2% of the balance due. However, the credit card company earns money by charging interest on the balance that you don't pay. So even if you pay credit card payments on time, interest is still accruing on the outstanding balance.

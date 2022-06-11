@@ -12,30 +12,34 @@ If you"ve spent more than a few hours on this problem, we suggest that you
 move on to a different part of the course. If you have time, come back to this
 problem after you"ve had a break and cleared your head. """
 
-s = "azcbobobegghakl"
+# s = "azcbobobegghakl"
 # ============================================================================
 
 
-abc = "abcdefghijklmnopqrstuvwxyz"
-final_str = ""
-current_str = ""
-current_ind = 0
+def longest_substring(s):
+    """Returns the longest substring in alphabetical order
+    """
 
-for char in s:
-    # If the current letter breaks the alphabetical order, reset the counters
-    if char < abc[current_ind]:
-        current_str = ""
-        current_ind = 0
+    abc = "abcdefghijklmnopqrstuvwxyz"
+    final_str = ""
+    current_str = ""
+    current_ind = 0
 
-    # Find a match and its properties,  add it to the temp string
-    for ind, letter in enumerate(abc):
-        if char == letter:
-            current_ind = ind
-            current_str += letter
-            break
+    for char in s:
+        # If the current letter breaks the alphabetical order, reset the counters
+        if char < abc[current_ind]:
+            current_str = ""
+            current_ind = 0
 
-    # Save the final_str if needed
-    if len(final_str) < len(current_str):
-        final_str = current_str
+        # Find a match and its properties,  add it to the temp string
+        for ind, letter in enumerate(abc):
+            if char == letter:
+                current_ind = ind
+                current_str += letter
+                break
 
-print("Longest substring in alphabetical order is:", final_str)
+        # Save the final_str if needed
+        if len(final_str) < len(current_str):
+            final_str = current_str
+
+    return f"Longest substring in alphabetical order is : {final_str}"

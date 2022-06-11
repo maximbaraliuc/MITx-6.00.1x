@@ -1,1 +1,3 @@
-test.py
+/temporary
+.vscode
+.pytest_cache

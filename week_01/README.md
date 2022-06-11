@@ -28,4 +28,4 @@ In the case of ties, print the first substring. For example, if `s = 'abcbcd'`, 
 
     Longest substring in alphabetical order is: abc
 
-:memo: Note: This problem may be challenging. We encourage you to work smart. If you've spent more than a few hours on this problem, we suggest that you move on to a different part of the course. If you have time, come back to this problem after you've had a break and cleared your head.
+:memo: This problem may be challenging. We encourage you to work smart. If you've spent more than a few hours on this problem, we suggest that you move on to a different part of the course. If you have time, come back to this problem after you've had a break and cleared your head.
