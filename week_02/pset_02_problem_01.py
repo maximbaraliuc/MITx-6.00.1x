@@ -14,7 +14,7 @@ def annual_remaining_balance(
     """
     monthly_interest_rate = (annual_interest_rate) / 12.0
 
-    for month in range(12):
+    for _ in range(12):
         monthly_pay = balance * monthly_payment_rate
         unpaid_balance = balance - monthly_pay
         balance = unpaid_balance + monthly_interest_rate * unpaid_balance

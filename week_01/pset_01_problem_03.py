@@ -15,12 +15,14 @@ problem after you"ve had a break and cleared your head. """
 # s = "azcbobobegghakl"
 # ============================================================================
 
+import string
 
-def longest_substring(s):
+
+def longest_substring(s: str) -> str:
     """Returns the longest substring in alphabetical order
     """
 
-    abc = "abcdefghijklmnopqrstuvwxyz"
+    abc = string.ascii_lowercase
     final_str = ""
     current_str = ""
     current_ind = 0

@@ -73,6 +73,42 @@ A summary of the required math is found below:
 
 _**We provide sample test cases below**. We suggest you develop your code on your own machine, and make sure your code passes the sample test cases, before you paste it into the box below._
 
+## Solution
+
+```python
+#  Problem 1 - Paying Debt off in a Year
+
+"""A program that calculates the credit card balance after one year \
+if a person only pays the minimum monthly payment required by the credit \
+card company each month"""
+
+
+def annual_remaining_balance(
+        balance: int,
+        annual_interest_rate: float,
+        monthly_payment_rate: float) -> str:
+    """Calculates statements on the monthly payment and remaining balance and \
+    returns the remaining balance after 12 months
+    """
+    monthly_interest_rate = (annual_interest_rate) / 12.0
+
+    for month in range(12):
+        monthly_pay = balance * monthly_payment_rate
+        unpaid_balance = balance - monthly_pay
+        balance = unpaid_balance + monthly_interest_rate * unpaid_balance
+
+    # For the grader(uses python 3.5) on edx use string concatenation
+    # return "Remaining balance: " + str(round(balance, 2))
+    return f"Remaining balance: {balance :.2f}"
+
+
+# The line bellow is intended to be uncommented for the grader on edx.
+# print(annual_remaining_balance(balance, annualInterestRate, monthlyPaymentRate))
+
+```
+
+[**^ go up**](#problem-set-02)
+
 ## Problem 2 - Paying Debt Off in a Year
 
 Now write a program that calculates the minimum **fixed** monthly payment needed in order pay off a credit card balance within 12 months. By a fixed monthly payment, we mean a single number which does not change each month, but instead is a constant amount that will be paid each month.
@@ -94,6 +130,47 @@ Assume that the interest is compounded monthly according to the balance at the e
 - **Monthly interest rate** = (Annual interest rate) / 12.0
 - **Monthly unpaid balance** = (Previous balance) - (Minimum fixed monthly payment)
 - **Updated balance each month** = (Monthly unpaid balance) + (Monthly interest rate x Monthly unpaid balance)
+
+## Solution
+
+```python
+#  Problem 2 - Paying Debt off in a Year
+
+"""A program that calculates the minimum fixed monthly (constant) payment \
+needed in order pay off a credit card balance within 12 months. \
+Monthly pay should be divisible by 10$"""
+
+
+def min_monthly_payment(balance: int, annual_interest_rate: float) -> str:
+    """Return the lowest monthly payment that will pay off all debt in under \
+    12 months"""
+
+    monthly_interest_rate = (annual_interest_rate) / 12.0
+
+    # Set a min for the constant of monthly pay
+    monthly_pay = balance // 120 * 10
+    original_balance = balance
+
+    while balance > 0:
+        # Modify or reset the starting point variables
+        balance = original_balance
+        monthly_pay += 10
+
+        # Simulate one year of payments
+        for _ in range(12):
+            unpaid_balance = balance - monthly_pay
+            balance = unpaid_balance + monthly_interest_rate * unpaid_balance
+
+    # For the grader(uses python 3.5) on edx use string concatenation
+    # return "Lowest Payment: " + str(monthly_pay)
+    return f"Lowest Payment: {monthly_pay}"
+
+
+# The line bellow is intended to be uncommented for the grader on edx.
+# print(min_monthly_payment(balance, annualInterestRate))
+```
+
+[**^ go up**](#problem-set-02)
 
 ## Problem 3 - Using Bisection Search to Make the Program Faster
 
@@ -120,6 +197,53 @@ In short:
 Write a program that uses these bounds and bisection search (for more info check [out the Wikipedia page on bisection search](https://en.wikipedia.org/wiki/Bisection_method)) to find the smallest monthly payment _to the cent_ (no more multiples of $10) such that we can pay off the debt within a year. Try it out with large inputs, and notice how fast it is (try the same large inputs in your solution to Problem 2 to compare!). Produce the same return value as you did in Problem 2.
 
 Note that if you do not use bisection search, your code will not run - your code only has 30 seconds to run on our servers.
+
+## Solution
+
+```python
+# Problem 3 - Using Bisection Search to Make the Program Faster
+
+"""Using BISECTION SEARCH the program calculates the minimum fixed and \
+constant monthly payment needed in order pay off a credit card balance within \
+12 months."""
+
+
+def min_monthly_payment(balance: int, annual_interest_rate: float) -> str:
+    """Return the lowest monthly payment to the cent (0.01$) that will pay off all debt in under \
+    12 months - using bisection search"""
+
+    monthly_interest_rate = (annual_interest_rate) / 12.0
+    original_balance = balance
+    # Set the lower and upper bound for bisection search
+    monthly_pay_low = balance / 12
+    monthly_pay_up = (balance*(1 + monthly_interest_rate)**12)/12.0
+
+    # Till the result doesn't differ less than a cent
+    while abs(balance) > 0.01:
+        # Reinitialize or reset the starting point variables
+        balance = original_balance
+        monthly_pay = (monthly_pay_low + monthly_pay_up) / 2.0
+
+        # Simulate one year of payments
+        for _ in range(12):
+            unpaid_balance = balance - monthly_pay
+            balance = unpaid_balance + monthly_interest_rate * unpaid_balance
+
+        if balance < 0:
+            monthly_pay_up = monthly_pay
+        else:
+            monthly_pay_low = monthly_pay
+
+    # For the grader(uses python 3.5) on edx use string concatenation
+    # return "Lowest Payment: " + str(round(monthly_pay, 2))
+    return f"Lowest Payment: {monthly_pay :.2f}"
+
+
+# The line bellow is intended to be uncommented for the grader on edx.
+# print(min_monthly_payment(balance, annualInterestRate))
+```
+
+[**^ go up**](#problem-set-02)
 
 ## Problem 1 Test Cases
 
@@ -219,3 +343,5 @@ Test Cases:
     Result Your Code Should Generate:
     -------------------
     Lowest Payment: 90325.03
+
+[**^ go up**](#problem-set-02)
