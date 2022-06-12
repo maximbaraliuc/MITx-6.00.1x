@@ -5,9 +5,9 @@ constant monthly payment needed in order pay off a credit card balance within \
 12 months."""
 
 
-def min_monthly_payment(balance: int, annual_interest_rate: float) -> str:
-    """Return the lowest monthly payment to the cent (0.01$) that will pay off all debt in under \
-    12 months - using bisection search"""
+def min_monthly_payment(balance: float, annual_interest_rate: float) -> str:
+    """Return the lowest monthly payment to the cent (0.01$) that will \
+    pay off all debt in under 12 months - using bisection search"""
 
     monthly_interest_rate = (annual_interest_rate) / 12.0
     original_balance = balance
