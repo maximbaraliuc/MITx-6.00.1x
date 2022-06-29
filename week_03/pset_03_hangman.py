@@ -84,7 +84,7 @@ def getGuessedWord(secretWord, lettersGuessed):
         if letter in lettersGuessed:
             guess_state += letter
         else:
-            guess_state += "_."
+            guess_state += "-"
 
     return guess_state
 
@@ -131,7 +131,7 @@ def hangman(secretWord):
     print("Welcome to the game Hangman!")
 
     secretWord = chooseWord(wordlist)  # comment this line for the grader
-    print(">>>", secretWord)
+    # print(">>>", secretWord) # Debugging shows the word
     print("I am thinking of a word that is " +
           str(len(secretWord)) + " letters long.")
     print("-------------")

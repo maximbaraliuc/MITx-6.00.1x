@@ -186,6 +186,8 @@ Sorry, you ran out of guesses. The word was else.
 
 Next, we'll break down the problem into logical subtasks, creating helper functions you will need to have in order for this game to work.
 
+[**^ go up**](#problem-set-03)
+
 ## Problem 1 - Is the Word Guessed
 
 Please read the Hangman Introduction before starting this problem. We'll start by writing 3 simple functions that will help us easily code the Hangman problem. First, implement the function `isWordGuessed` that takes in two parameters - a string, `secretWord`, and a list of letters, `lettersGuessed`. This function returns a boolean - `True` if `secretWord` has been guessed (ie, all the letters of `secretWord` are in `lettersGuessed`) and False otherwise.
@@ -216,6 +218,8 @@ def isWordGuessed(secretWord, lettersGuessed):
 ## Solution
 
     work in progress
+
+[**^ go up**](#problem-set-03)
 
 ## Problem 2 - Getting the User\'s Guess
 
@@ -251,6 +255,8 @@ def getGuessedWord(secretWord, lettersGuessed):
 ## Solution
 
     work in progress
+
+[**^ go up**](#problem-set-03)
 
 ## Problem 3 - Printing Out all Available Letters
 
@@ -475,3 +481,5 @@ def hangman(secretWord):
 ## Solution
 
     work in progress
+
+[**^ go up**](#problem-set-03)
