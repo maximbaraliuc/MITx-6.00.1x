@@ -178,6 +178,8 @@ The first step is to implement some code that allows us to calculate the score f
 
 Fill in the code for `getWordScore` in `ps4a.py` and be sure you've passed the appropriate tests in `test_ps4a.py` before pasting your function definition here.
 
+## Solution
+
 ```python
 def getWordScore(word, n):
     """
@@ -194,12 +196,19 @@ def getWordScore(word, n):
     n: integer (HAND_SIZE; i.e., hand size required for additional points)
     returns: int >= 0
     """
-    # TO DO ... <-- Remove this comment when you code this function
+
+    # My code below
+
+    score = 0
+    for letter in word:
+        score += SCRABBLE_LETTER_VALUES[letter]
+    score *= len(word)
+
+    if len(word) == n:
+        score += 50
+
+    return score
 ```
-
-## Solution
-
-    work in progress
 
 [**^ go up**](#problem-set-04)
 
@@ -274,6 +283,8 @@ You may wish to review the ".copy" method of Python dictionaries (review this an
 
 Your implementation of updateHand should be short (ours is 4 lines of code). It does not need to call any helper functions.
 
+## Solution
+
 ```python
 def updateHand(hand, word):
     """
@@ -291,13 +302,15 @@ def updateHand(hand, word):
     hand: dictionary (string -> int)
     returns: dictionary (string -> int)
     """
-    # TO DO ... <-- Remove this comment when you code this function
 
+    # My code below
+
+    new_hand = hand.copy()
+    for letter in word:
+        new_hand[letter] -= 1
+
+    return new_hand
 ```
-
-## Solution
-
-    work in progress
 
 [**^ go up**](#problem-set-04)
 
@@ -308,6 +321,8 @@ At this point, we have written code to generate a random hand and display that h
 **Testing**: Make sure the `test_isValidWord` tests pass. In addition, you will want to test your implementation by calling it multiple times on the same hand - what should the correct behavior be? Additionally, the empty string (`''`) is not a valid word - if you code this function correctly, you shouldn't need an additional check for this condition.
 
 Fill in the code for `isValidWord` in `ps4a.py `and be sure you've passed the appropriate tests in `test_ps4a.py` before pasting your function definition here.
+
+## Solution
 
 ```python
 def isValidWord(word, hand, wordList):
@@ -321,18 +336,28 @@ def isValidWord(word, hand, wordList):
     hand: dictionary (string -> int)
     wordList: list of lowercase strings
     """
-    # TO DO ... <-- Remove this comment when you code this function
+
+    # My code below
+
+    # Check if word is in hand
+    word_freq = getFrequencyDict(word)
+    for key, value in word_freq.items():
+        if not hand.get(key, False) or value > hand[key]:
+            return False
+
+    if word in wordList:
+        return True
+
+    return False
 ```
-
-## Solution
-
-    work in progress
 
 [**^ go up**](#problem-set-04)
 
 ## Problem 4 - Hand Length
 
 We are now ready to begin writing the code that interacts with the player. We'll be implementing the `playHand` function. This function allows the user to play out a single hand. First, though, you'll need to implement the helper `calculateHandlen` function, which can be done in under five lines of code.
+
+## Solution
 
 ```python
 def calculateHandlen(hand):
@@ -342,12 +367,15 @@ def calculateHandlen(hand):
     hand: dictionary (string int)
     returns: integer
     """
-    # TO DO... <-- Remove this comment when you code this function
+
+    # My code below
+
+    hand_len = 0
+    for value in hand.values():
+        hand_len += value
+
+    return hand_len
 ```
-
-## Solution
-
-    work in progress
 
 [**^ go up**](#problem-set-04)
 
@@ -436,6 +464,8 @@ Run out of letters. Total score: 99 points.
 
 Be sure that, in addition to the listed tests, you test the same basic test conditions with varying values of `n`. `n` will never be smaller than the number of letters in the hand.
 
+## Solution
+
 ```python
 def playHand(hand, wordList, n):
     """
@@ -459,14 +489,60 @@ def playHand(hand, wordList, n):
         n: integer (HAND_SIZE; i.e., hand size required for additional points)
 
     """
-    # BEGIN PSEUDOCODE (download ps4a.py to see)
+
+    # My code below
+
+    # Keep track of the total score
+    total_score = 0
+
+    while True:
+
+        # As long as there are still letters left in the hand:
+        if calculateHandlen(hand) == 0:
+            return "Run out of letters. Total score: " + str(total_score) + " points."
+
+        # Display the hand
+        # For the grader(uses python 3.5) on edx use string concatenation
+        print()
+        print("Current Hand:  ", end="")
+        displayHand(hand)
+
+        # Ask user for input
+        user_word = input(
+            "Enter word, or a \".\" to indicate that you are finished: ")
+
+        # If the input is a single period:
+        # End the game (break out of the loop)
+        if user_word == ".":
+            break
+
+        # Otherwise (the input is not a single period):
+        # If the word is not valid:
+        # Reject invalid word (print a message followed by a blank line)
+        if not isValidWord(user_word, hand, wordList):
+            print("Invalid word, please try again.")
+            continue
+
+        # Otherwise (the word is valid):
+
+        # Tell the user how many points the word earned, and the updated total score, in one line followed by a blank line
+        word_score = getWordScore(user_word, n)
+        total_score += word_score
+        print("\"" + user_word + "\" earned " + str(word_score) +
+              " points. Total: " + str(total_score) + " points")
+
+        # Update the hand
+        hand = updateHand(hand, user_word)
+
+    # Game is over (user entered a '.' or ran out of letters), so tell user the total score
+
+    # For the grader(uses python 3.5) on edx use string concatenation
+    print("Goodbye! Total score: " + str(total_score) + " points.")
+    print()
+    return
 ```
 
 **Note**: Letters in the dictionary for the test cases in "See full output" are actually strings. When you test your code, they should be {"a": 1, "e" : 1,... } not {a: 1, e : 1,...}.
-
-## Solution
-
-    work in progress
 
 [**^ go up**](#problem-set-04)
 
@@ -577,6 +653,8 @@ print('world', end="?")
 print('!')
 ```
 
+## Solution
+
 ```python
 def playGame(wordList):
     """
@@ -590,14 +668,37 @@ def playGame(wordList):
 
     2) When done playing the hand, repeat from step 1
     """
-    # TO DO ... <-- Remove this comment when you code this function
+
+    # My code below
+
+    while True:
+
+        user_input = input(
+            "Enter n to deal a new hand, r to replay the last hand, or e to end game: ")
+
+        if user_input == "n":
+            hand = dealHand(HAND_SIZE)
+            playHand(hand, wordList, HAND_SIZE)
+
+        elif user_input == "r":
+            try:
+                hand
+            except NameError:
+                print("You have not played a hand yet. Please play a new hand first!")
+                print()
+            else:
+                playHand(hand, wordList, HAND_SIZE)
+
+        elif user_input == "e":
+            break
+
+        else:
+            print("Invalid command.")
+
+    return
 ```
 
 **Note**: the input function on Spyder may print an extra newline. That's ok. Do not try to move text backwards using end='\b' in a print statement
-
-## Solution
-
-    work in progress
 
 [**^ go up**](#problem-set-04)
 
@@ -801,6 +902,8 @@ Be careful though - you only want to do this preprocessing _one time_ - probably
 
 Be sure to only paste your definition for `playGame` from `ps4b.py` in the following box. Do not include any other function definitions.
 
+## Solution
+
 ```python
 def playGame(wordList):
     """
@@ -828,13 +931,55 @@ def playGame(wordList):
 
     wordList: list (string)
     """
-    # TO DO...
+
+    # My code below
+
+    hand = 0
+    while True:
+        # Verify if the input is correct and the game can continue
+        # Choose the proper hand or the game stop.
+        user_input = input(
+            "Enter n to deal a new hand, r to replay the last hand, or e to end game: ")
+
+        if user_input == "e":
+            break
+
+        if user_input not in "nre":
+            print("Invalid command.")
+            continue
+
+        # Whe no game played before start from begin
+        if user_input == "r":
+            if hand == 0:
+                print("You have not played a hand yet. Please play a new hand first!")
+                print()
+                continue
+
+        # Choose the player, the user or the computer.
+        while True:
+            select_player = input(
+                "Enter u to have yourself play, c to have the computer play: ")
+
+            # Loop again if the input is wrong
+            if select_player not in "uc":
+                print("Invalid command.")
+                continue
+
+            if user_input == "n":
+                hand = dealHand(HAND_SIZE)
+                if select_player == "u":
+                    playHand(hand, wordList, HAND_SIZE)
+                else:
+                    compPlayHand(hand, wordList, HAND_SIZE)
+
+            elif user_input == "r":
+                if select_player == "u":
+                    playHand(hand, wordList, HAND_SIZE)
+                else:
+                    compPlayHand(hand, wordList, HAND_SIZE)
+            break
 ```
 
 **Note**: the input function on Spyder may print an extra newline. That's ok. Do not try to move text backwards using end='\b' in a print statement
-
-## Solution
-
-    work in progress
 
 [**^ go up**](#problem-set-04)
