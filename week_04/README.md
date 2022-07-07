@@ -11,9 +11,20 @@
 - [**Computer Choosing a Word and Playing a Hand**](#computer-choosing-a-word-and-playing-a-hand)
 - [**Problem 07**](#problem-7---you-and-your-computer)
 
-# Introduction
+## Introduction
 
 In this problem set, you'll implement _two_ versions of a wordgame!
+
+- [**Introduction**](#introduction)
+- [**Getting Started**](#getting-started)
+- [**Problem 01**](#problem-1---word-scores)
+- [**Problem 02**](#problem-2---dealing-with-hands)
+- [**Problem 03**](#problem-3---valid-words)
+- [**Problem 04**](#problem-4---hand-length)
+- [**Problem 05**](#problem-5---playing-a-hand)
+- [**Problem 06**](#problem-6---playing-a-game)
+- [**Computer Choosing a Word and Playing a Hand**](#computer-choosing-a-word-and-playing-a-hand)
+- [**Problem 07**](#problem-7---you-and-your-computer)
 
 Don't be intimidated by the length of this problem set. There is a lot of reading, but it can be done with a reasonable amount of thinking and coding. It'll be helpful if you start this problem set a few days before it is due!
 
